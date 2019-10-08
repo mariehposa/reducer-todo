@@ -1,13 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useReducer} from 'react';
 import './App.css';
-import Reducer from './reducers/Reducer';
-import Todolist from './components/TodoList'
+import {reducer, initialStateObject, ADD_TODO, TOGGLE_TODO, CLEAR_MARKED} from './reducers/Reducer';
+import Todolist from './components/TodoList';
+import TodoForm from "./components/TodoForm";
 
 function App() {
+  const [ data, dispatch ] = useReducer(reducer, initialStateObject)
+  
+  const onAddTodo = (formValues, actions) => {
+    const newValue = formValues.todo;
+    dispatch({
+      type: ADD_TODO,
+      payload: { item: newValue }
+    })
+    actions.resetForm()
+  }
+
+  const toggleField = (id) => {
+    dispatch({
+      type: TOGGLE_TODO,
+      payload: {id: id}
+    })
+  }
+
+  const clearMarked = () => {
+    dispatch({
+      type: CLEAR_MARKED
+    })
+  }
   return (
     <div className="App">
-      <Todolist initialStateObject={initila} />
+      <Todolist todos={data} toggle={toggleField}/>
+      <TodoForm onSubmit={onAddTodo} />
+      <button onClick={() => clearMarked()} > Clear Marked</button>
     </div>
   );
 }
