@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Formik, Field } from 'formik';
+import { Formik } from 'formik';
+import { LoginStyle, StyledField, StyledButton } from './FormStyles';
 
 const initialFormValues = {
     todo:'',
@@ -12,10 +13,10 @@ export default function TodoForm ({onSubmit}) {
            onSubmit={ onSubmit}
            render={props => {
                return(
-                   <Form>
-                       <Field name="todo" type="type" placeholder="Enter todo!" />
-                       <button type="submit">Add Todo</button>
-                   </Form>
+                   <LoginStyle>
+                       <StyledField name="todo" type="type" placeholder="Enter todo!" />
+                       <StyledButton type="submit">Add Todo</StyledButton>
+                   </LoginStyle>
                );
            }} 
         />

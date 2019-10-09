@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       <Todolist todos={data} toggle={toggleField}/>
       <TodoForm onSubmit={onAddTodo} />
-      <button onClick={() => clearMarked()} > Clear Marked</button>
+      <button className="button" onClick={() => clearMarked()} > Clear Marked</button>
     </div>
   );
 }
